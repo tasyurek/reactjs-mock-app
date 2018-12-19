@@ -49,7 +49,7 @@ class FilterableProductTable extends Component {
   render() {
     return (
       <div>
-        <SearchBar />
+        <SearchBar products={this.state.products} />
         <ProductTable />
       </div>
     );

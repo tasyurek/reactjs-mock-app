@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 
 function ProductCategoryRow(props) {
-  return <div>ProductCategoryRow</div>;
+  return <div>{props.category}</div>;
 }
 
 export default ProductCategoryRow;
