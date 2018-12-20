@@ -4,20 +4,37 @@ import ProductRow from "./ProductRow";
 
 class ProductTable extends Component {
   render() {
-    if (this.props.products) {
-      var products = this.props.products.map(p => {
+    const electronics = this.props.products.map(p => {
+      if (p.category === "Electronics") {
         return (
-          <div>
+          <div key={Math.random()}>
             <ProductRow name={p.name} price={p.price} />
           </div>
         );
-      });
-    }
+      }
+      return null;
+    });
+    const sportingGoods = this.props.products.map(p => {
+      if (p.category === "Sporting Goods") {
+        return (
+          <div key={Math.random()}>
+            <ProductRow name={p.name} price={p.price} />
+          </div>
+        );
+      }
+      return null;
+    });
 
     return (
       <div>
-        <ProductCategoryRow category={this.props.category} />
-        {products}
+        <div className="productRow">
+          <span>Name</span>
+          <span>Price</span>
+        </div>
+        <ProductCategoryRow category="Electronics" />
+        {electronics}
+        <ProductCategoryRow category="Sporting Goods" />
+        {sportingGoods}
       </div>
     );
   }

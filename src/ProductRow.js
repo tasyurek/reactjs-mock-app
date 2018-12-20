@@ -2,8 +2,9 @@ import React from "react";
 
 function ProductRow(props) {
   return (
-    <div>
-      {props.name} {props.price}
+    <div className="productRow">
+      <span>{props.name}</span>
+      <span>{props.price}</span>
     </div>
   );
 }

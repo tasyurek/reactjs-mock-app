@@ -6,7 +6,7 @@ class SearchBar extends Component {
     super(props);
     this.state = {
       searchedText: "",
-      isCheck: false
+      checkStock: false
     };
   }
 
@@ -18,28 +18,28 @@ class SearchBar extends Component {
 
   handleCheckBox = e => {
     this.setState(state => ({
-      isCheck: !state.isCheck
+      checkStock: !state.checkStock
     }));
   };
 
   render() {
-    const sportingGoods = this.props.products.filter(
-      product =>
-        product.name.toLowerCase().includes(this.state.searchedText) &&
-        product.category === "Sporting Goods" &&
-        this.state.isCheck === product.stocked
-    );
-
-    const electronics = this.props.products.filter(
-      product =>
-        product.name.toLowerCase().includes(this.state.searchedText) &&
-        product.category === "Electronics" &&
-        this.state.isCheck === product.stocked
-    );
+    if (this.props.products.length) {
+      if (this.state.checkStock) {
+        var products = this.props.products.filter(
+          product =>
+            product.name.toLowerCase().includes(this.state.searchedText) &&
+            product.stocked
+        );
+      } else {
+        var products = this.props.products.filter(product =>
+          product.name.toLowerCase().includes(this.state.searchedText)
+        );
+      }
+    }
 
     return (
       <div>
-        <form>
+        <form className="searchBar">
           <div>
             <input type="text" onChange={this.handleChange} />
           </div>
@@ -50,8 +50,7 @@ class SearchBar extends Component {
             </label>
           </div>
         </form>
-        <ProductTable products={electronics} category="Electronics" />
-        <ProductTable products={sportingGoods} category="Sporting Goods" />
+        <ProductTable products={products} />
       </div>
     );
   }

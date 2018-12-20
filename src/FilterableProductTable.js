@@ -50,7 +50,6 @@ class FilterableProductTable extends Component {
     return (
       <div>
         <SearchBar products={this.state.products} />
-        <ProductTable />
       </div>
     );
   }
